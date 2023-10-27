@@ -1,0 +1,9 @@
+extends ../index
+block content 
+	section.mt-5
+		form(action="/add-user" method="post")
+			label(for="name" class="form-label") Nom 
+			input#name(type="text" name="name" class="form-control border-dark")
+			label(for="birth" class="form-label mt-3") Date de naissance
+			input#birth(type="date" name="birth" class="form-control border-dark")
+			button(type="submit" class="btn btn-primary mt-4") Valider

@@ -1,0 +1,6 @@
+include ../mixins/navLink
+
+
+header(class="navbar navbar-expand-lg bg-dark"): nav(class="container-fluid"): ul(class="navbar-nav me-auto mb-2 mb-lg-0") 
+	each navItem in navItems 
+		+navLink(navItem.title, navItem.path, navItem.isActive)

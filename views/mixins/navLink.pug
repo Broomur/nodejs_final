@@ -1,0 +1,5 @@
+mixin navLink(title, path, isActive)
+	if isActive 
+		li(class="nav-item"): a(class="nav-link text-success" href=path)= title
+	else
+		li(class="nav-item"): a(class="nav-link text-white" href=path)= title

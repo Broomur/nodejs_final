@@ -1,0 +1,31 @@
+extends ../index
+block content
+	section.mt-5
+		table(class="table table-secondary table-striped")
+			thead
+				tr
+					th(colspan="1" scope="col") Nom
+					th(colspan="1" scope="col" class="text-center") Date de naissance
+					th(colspan="1" scope="col" class="text-center") Supprimer 
+			tbody
+				each student in students 
+					tr(student=student) 
+						th(scope="row") #{student.name}
+						td(class="text-center") #{student.birthString}
+						td(class="text-center"): button.delete-button(type="button" class="btn btn-outline-danger btn-sm") X 
+	script. 
+		const deleteButtons = document.querySelectorAll('.delete-button');
+		deleteButtons.forEach(button => {
+			button.addEventListener('click', (event) => {
+				const listItem = event.target.parentElement;
+				const {name, birth} = JSON.parse(listItem.getAttribute('student'));
+				fetch('http://localhost:8888/delete-user', {method: 'DELETE', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({name: name, birth: birth})})
+					.then(res => {
+						if (res.status === 204) {
+							listItem.remove();
+						} else {
+							console.log('error')
+						}
+					})
+			})
+		})
